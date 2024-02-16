@@ -1,6 +1,6 @@
 import './App.css';
 import Chart from './components/Chart/Chart';
-import TickerList from './components/Tickers/TickerList';
+import TickerList from './components/TickerList/TickerList';
 
 function App() {
 

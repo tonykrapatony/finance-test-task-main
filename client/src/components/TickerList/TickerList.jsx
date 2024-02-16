@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { handleTicker } from "./HandleTicker";
-import TickerItem from "./TickerItem";
+import TickerItem from "../TickerItem/TickerItem";
 
 import s from "./TickerList.module.scss";
 
