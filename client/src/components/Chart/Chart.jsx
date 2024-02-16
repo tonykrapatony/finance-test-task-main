@@ -13,23 +13,22 @@ import {
 import s from './Chart.module.scss';
 
 export default function Chart() {
-  const data = useSelector((state) => state.ticker.allItems);
+  const allItems = useSelector((state) => state.ticker.allItems);
+  console.log(allItems)
   const [newData, setNewData] = useState([]);
 
   useEffect(() => {
+    const data = allItems.flatMap(array => array);
+    console.log(data)
     const outputArray = data.reduce((result, item) => {
       const { last_trade_time, ticker, price } = item;
       const dateObject = new Date(last_trade_time);
-
-      const year = dateObject.getFullYear(); // Отримуємо рік
-      const month = ("0" + (dateObject.getMonth() + 1)).slice(-2); // Отримуємо місяць
-      const day = ("0" + dateObject.getDate()).slice(-2); // Отримуємо день
 
       const hours = ("0" + dateObject.getHours()).slice(-2); // Отримуємо години
       const minutes = ("0" + dateObject.getMinutes()).slice(-2); // Отримуємо хвилини
       const seconds = ("0" + dateObject.getSeconds()).slice(-2); // Отримуємо секунди
 
-      const formattedDate = `${day}.${month}.${year} ${hours}:${minutes}:${seconds}`;
+      const formattedDate = `${hours}:${minutes}:${seconds}`;
 
       // Перевіряємо, чи вже існує об'єкт з такою датою в результаті
       let existingItem = result.find((entry) => entry.date === formattedDate);
@@ -49,9 +48,8 @@ export default function Chart() {
       return result;
     }, []);
     setNewData(outputArray);
-  }, [data]);
+  }, [allItems]);
 
-  // console.log(newData)
   return (
     <div className={s.chart_container}>
       <h3 className={s.title}>Realtime Chart</h3>
@@ -59,7 +57,6 @@ export default function Chart() {
         
         width={1000}
         height={500}
-        className={s.chart}
         data={newData}
         margin={{
           top: 5,
