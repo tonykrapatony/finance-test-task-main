@@ -1,0 +1,73 @@
+.item {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 5px 5px 5px 30px;
+    border-radius: 5px;
+    transition: background-color .5s ease-in;
+    &::before {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 30px;
+        height: 100%;
+        font-size: 50px;
+    }
+    &.positive {
+        color: #044204;
+        border: 1px solid #044204;
+        background-color: #93ff93;
+        &::before {
+            content: '\2191';
+            color: #044204;
+        }
+        .change,
+        .change_percent {
+            position: relative;
+            padding-left: 5px;
+            &::before {
+                content: '+';
+                width: 5px;
+            }
+        }
+    }
+    
+    &.negative {
+        color: #610303;
+        border: 1px solid #610303;
+        background-color: #ff3c3c;
+        &::before {
+            content: '\2193';
+            color: #610303;
+        }
+        .change,
+        .change_percent {
+            position: relative;
+            padding-left: 5px;
+            &::before {
+                content: '-';
+                width: 5px;
+            }
+        }
+    }
+    &.noСhange {
+        color: #747201;
+        border: 1px solid #747201;
+        background-color: #fffc61;
+        &::before {
+            content: '\2192';
+            color: #747201;
+        }
+    }
+
+    .title,
+    .price,
+    .change,
+    .change_percent {
+        width: 50%;
+    }
+    .date {
+        width: 100%;
+    }
+}
